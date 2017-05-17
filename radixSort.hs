@@ -1,8 +1,5 @@
 import Data.Bits
 
-and' :: (Num a, Bits a) => a -> a -> a
-and' x y = x .&. y
-
 orderBitEven :: (Integral b, Bits b) => Int -> b -> Bool
 orderBitEven i b = even (shiftR b i)
 	
