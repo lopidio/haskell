@@ -2,14 +2,16 @@ min' :: Ord a => [a] -> a
 min' [x] = x
 min' (x:xs) = min x (min' xs)
 
-removeItemFromList :: Eq a => a -> [a] -> [a]
-removeItemFromList item xs = [ x | x <- xs, x /= item ]
+deleteFirst :: Eq t => t -> [t] -> [t]
+deleteFirst _ [] = [] 
+deleteFirst a (b:bc) | a == b    = bc 
+                     | otherwise = b : deleteFirst a bc
 
 selectionSort :: (Ord a) => [a] -> [a]  
 selectionSort [] = []
 selectionSort xs = 
     let
         smallest = min' xs
-        smallestComplement = removeItemFromList smallest xs
+        smallestComplement = deleteFirst smallest xs
     in
         smallest : selectionSort smallestComplement
